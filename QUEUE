@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class AntrianKasir {
+    int depan, belakang;
+    string pelanggan[5];
+public:
+    AntrianKasir() : depan(0), belakang(0) {}
+    void tambahPelanggan(string p) {
+        if (belakang < 5)
+            pelanggan[belakang++] = p;
+        else
+        cout << "Antrian penuh. Pelanggan tidak dapat ditambahkan.\n";
+    }
+    void layaniPelanggan() {
+        if (depan < belakang) {
+            cout << pelanggan[depan++] << " telah dilayani.\n";
+            if (depan == belakang) depan = belakang = 0; // Reset antrian jika kosong
+        } else {
+            cout << "Tidak ada pelanggan dalam antrian.\n";
+        }
+    }
+    void lihatAntrian() {
+        if (depan < belakang) {
+            cout << "Pelanggan dalam antrian: ";
+            for (int i = depan; i < belakang; ++i) {
+                cout << pelanggan[i] << (i < belakang - 1 ? ", " : "\n");
+            }
+        } else {
+            cout << "Antrian kosong.\n";
+        }
+    }
+};
+
+int main() {
+    AntrianKasir antrian;
+    antrian.tambahPelanggan("Ali");
+    antrian.tambahPelanggan("Budi");
+    antrian.tambahPelanggan("Citra");
+    antrian.lihatAntrian();
+    antrian.layaniPelanggan();
+    antrian.lihatAntrian();
+    antrian.layaniPelanggan();
+    antrian.lihatAntrian();
+    antrian.layaniPelanggan();
+    antrian.lihatAntrian();
+    return 0;
+}
