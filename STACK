@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class TumpukanPiring {
+    int puncak;
+    string piring[5];
+public:
+    TumpukanPiring() : puncak(-1) {}
+    void tambahPiring(string p) { if (puncak < 4) piring[++puncak] = p; else cout << "Tumpukan penuh.\n"; }
+    void ambilPiring() { if (puncak > -1) cout << piring[puncak--] << " diambil.\n"; else cout << "Tumpukan kosong.\n"; }
+    void lihatPuncak() { if (puncak > -1) cout << "Piring teratas: " << piring[puncak] << endl; else cout << "Tumpukan kosong.\n"; }
+};
+
+int main() {
+    TumpukanPiring tumpukan;
+    tumpukan.tambahPiring("Piring1");
+    tumpukan.tambahPiring("Piring2");
+    tumpukan.tambahPiring("Piring3");
+    tumpukan.lihatPuncak();
+    tumpukan.ambilPiring();
+    tumpukan.lihatPuncak();
+    return 0;
+}
