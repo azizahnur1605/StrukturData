@@ -1,0 +1,47 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Barang {
+    string nama;
+    float harga;
+};
+
+void tampilkanDaftar(Barang barang[], int n) {
+    for (int i = 0; i < n; i++) {
+        cout << barang[i].nama << ": " << barang[i].harga << endl;
+    }
+}
+
+void insertionSort(Barang barang[], int n) {
+    for (int i = 1; i < n; i++) {
+        Barang key = barang[i];
+        int j = i - 1;
+        while (j >= 0 && barang[j].harga > key.harga) {
+            barang[j + 1] = barang[j];
+            j = j - 1;
+        }
+        barang[j + 1] = key;
+    }
+}
+
+int main() {
+    Barang barang[] = {
+        {"Sabun", 5000},
+        {"Sampo", 12000},
+        {"Pasta Gigi", 8000},
+        {"Tisu", 6000},
+        {"Detergen", 15000}
+    };
+    int n = sizeof(barang) / sizeof(barang[0]);
+
+    cout << "Daftar barang sebelum diurutkan:" << endl;
+    tampilkanDaftar(barang, n);
+
+    insertionSort(barang, n);
+
+    cout << "\nDaftar barang setelah diurutkan berdasarkan harga:" << endl;
+    tampilkanDaftar(barang, n);
+
+    return 0;
+}
